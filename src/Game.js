@@ -2,16 +2,9 @@ import React from "react";
 import "./Game.css";
 
 class Square extends React.Component {
-    constructor() {
-        super();
-        this.state = {
-            value: null,
-        };
-    };
-
     render() {
         return (
-            <button className="square" onClick={() => this.setState({value: 'X'})}>
+            <button className="square" onClick={() => this.props.onClick()}>
                 {this.props.value}
             </button>
         );
@@ -52,6 +45,12 @@ class Board extends React.Component {
                 </div>
             </div>
         );
+    }
+
+    handleClick(i) {
+        const squares = this.state.squares.slice();
+        squares[i] = 'X';
+        this.setState({squares: squares});
     }
 }
 
