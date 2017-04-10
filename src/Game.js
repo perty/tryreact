@@ -1,11 +1,13 @@
 import React from "react";
-import "./Game.css";
+import {Button, Col, Navbar, NavItem, Row} from "react-materialize";
 
 function Square(props) {
     return (
-        <button className="square" onClick={() => props.onClick()}>
-            {props.value}
-        </button>
+        <Col>
+            <button className="square" onClick={() => props.onClick()}>
+                {props.value}
+            </button>
+        </Col>
     );
 }
 
@@ -18,22 +20,22 @@ class Board extends React.Component {
 
     render() {
         return (
-            <div className="grid-item 1/2">
-                <div className="board-row">
+            <div>
+                <Row>
                     {this.renderSquare(0)}
                     {this.renderSquare(1)}
                     {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row>
                     {this.renderSquare(3)}
                     {this.renderSquare(4)}
                     {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
+                </Row>
+                <Row>
                     {this.renderSquare(6)}
                     {this.renderSquare(7)}
                     {this.renderSquare(8)}
-                </div>
+                </Row>
             </div>
         );
     }
@@ -74,15 +76,23 @@ class Game extends React.Component {
             );
         });
         return (
-            <div className="game grid">
-                <Board
-                    squares={current.squares}
-                    onClick={(i) => this.handleClick(i)}
-                />
-                <div className="game-info grid-item 1/2">
+            <div>
+                <Navbar brand='logo' left>
+                    <NavItem href='get-started.html'>Getting started</NavItem>
+                    <NavItem href='components.html'>Components</NavItem>
+                </Navbar>
+                <Row>
+                    <Col s={6}>
+                        <Board
+                            squares={current.squares}
+                            onClick={(i) => this.handleClick(i)}
+                        />
+                    </Col>
+                    <Col s={6}>
                     <div>{ status }</div>
                     <ol>{ moves }</ol>
-                </div>
+                    </Col>
+                </Row>
             </div>
         );
     }

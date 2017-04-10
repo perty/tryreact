@@ -10,11 +10,10 @@
     "cardinalcss": "^3.7.0",
     "less": "^2.7.2",
     "react": "^15.3.1",
-    "react-dom": "^15.3.1"
+    "react-dom": "^15.3.1",
+    "react-materialize": "^0.18.1"
   },
   "scripts": {
-    "build-css": "lessc cardinal.less cardinal.css",
-    "watch-css": "npm run build-css && lessc cardinal.less cardinal.css --watch --recursive",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
