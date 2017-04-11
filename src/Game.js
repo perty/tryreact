@@ -16,23 +16,22 @@ class Board extends React.Component {
         return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
     }
 
+    renderRow(start) {
+        return (
+            <div className="board-row">
+                {this.renderSquare(start)}
+                {this.renderSquare(start + 1)}
+                {this.renderSquare(start + 2)}
+            </div>)
+    }
+
     render() {
         return (
             <div className="grid-item 1/2">
-                <div className="board-row">
-                    {this.renderSquare(0)}
-                    {this.renderSquare(1)}
-                    {this.renderSquare(2)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(3)}
-                    {this.renderSquare(4)}
-                    {this.renderSquare(5)}
-                </div>
-                <div className="board-row">
-                    {this.renderSquare(6)}
-                    {this.renderSquare(7)}
-                    {this.renderSquare(8)}
+                <div className="board">
+                    {this.renderRow(0)}
+                    {this.renderRow(3)}
+                    {this.renderRow(6)}
                 </div>
             </div>
         );
@@ -105,6 +104,7 @@ class Game extends React.Component {
     }
 
     jumpTo(step) {
+        //noinspection RedundantConditionalExpressionJS
         this.setState({
             stepNumber: step,
             xIsNext: (step % 2) ? false : true,

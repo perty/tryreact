@@ -7,6 +7,11 @@ ol, ul {
     padding-left: 30px;
 }
 
+.board  {
+    border: 3px solid #222222;
+    display: inline-block;
+}
+
 .board-row:after {
     clear: both;
     content: "";
@@ -18,8 +23,8 @@ ol, ul {
 }
 
 .square {
-    background: #fff;
-    border: 1px solid #999;
+    background: #ff8a56;
+    border: 1px solid #999999;
     float: left;
     font-size: 24px;
     font-weight: bold;
