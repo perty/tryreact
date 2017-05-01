@@ -2,6 +2,7 @@
   "name": "tryreact",
   "version": "0.1.0",
   "private": true,
+  "homepage": "/tic-tac-toe",
   "devDependencies": {
     "react-scripts": "0.4.1"
   },
