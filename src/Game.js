@@ -62,7 +62,10 @@ class Game extends React.Component {
         if (winner) {
             status = 'Winner: ' + winner;
         } else {
-            status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
+            if(history.length > 9)
+                status = "Tie";
+            else
+                status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
         }
         const moves = history.map((step, turn) => {
             const desc = turn ?
@@ -92,7 +95,7 @@ class Game extends React.Component {
         const history = this.state.history;
         const current = history[history.length - 1];
         const squares = current.squares.slice();
-        if (calculateWinner(squares) || squares[i]) {
+        if (!possibleMove(squares, i)) {
             return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
@@ -116,6 +119,10 @@ class Game extends React.Component {
 }
 
 export default Game;
+
+function possibleMove(squares, i) {
+    return !(calculateWinner(squares) || squares[i]);
+}
 
 function calculateWinner(squares) {
     const lines = [
