@@ -12,6 +12,7 @@
   },
   "scripts": {
     "start": "react-scripts start",
+    "debug": "NODE_DEBUG_OPTIONS=$NODE_DEBUG_OPTION react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"

@@ -1,5 +1,6 @@
 import React from "react";
 import "./GameView.css";
+import Game from "./Game";
 
 function Square(props) {
     return (
@@ -13,7 +14,7 @@ function Square(props) {
 class Board extends React.Component {
 
     renderSquare(i) {
-        return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)} />;
+        return <Square value={this.props.squares[i]} onClick={() => this.props.onClick(i)}/>;
     }
 
     render() {
@@ -46,23 +47,20 @@ class GameView extends React.Component {
         super();
         this.state = {
             stepNumber: 0,
-            history: [{
-                move: 0,
-                squares: new Array(9).fill(null)
-            }],
+            game: new Game(),
             xIsNext: true
         };
     }
 
     render() {
-        const history = this.state.history;
+        const history = this.state.game.history;
         const current = history[this.state.stepNumber];
         const winner = calculateWinner(current.squares);
         let status;
         if (winner) {
             status = 'Winner: ' + winner;
         } else {
-            if(history.length > 9)
+            if (history.length > 9)
                 status = "Tie";
             else
                 status = 'Next player: ' + (this.state.xIsNext ? 'X' : 'O');
@@ -92,21 +90,19 @@ class GameView extends React.Component {
     }
 
     handleClick(i) {
-        const history = this.state.history;
+        const history = this.state.game.history;
         const current = history[history.length - 1];
         const squares = current.squares.slice();
         if (!possibleMove(squares, i)) {
             return;
         }
         squares[i] = this.state.xIsNext ? 'X' : 'O';
-        this.setState({
+        this.game.addNewState(squares);
+/*        this.setState({
             stepNumber: history.length,
-            history: history.concat([{
-                move: i,
-                squares: squares
-            }]),
+            game: this.game,
             xIsNext: !this.state.xIsNext,
-        });
+        });*/
     }
 
     jumpTo(step) {
