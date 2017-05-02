@@ -1,5 +1,5 @@
 import React from "react";
-import "./Game.css";
+import "./GameView.css";
 
 function Square(props) {
     return (
@@ -40,7 +40,7 @@ class Board extends React.Component {
 
 }
 
-class Game extends React.Component {
+class GameView extends React.Component {
 
     constructor() {
         super();
@@ -118,7 +118,7 @@ class Game extends React.Component {
     }
 }
 
-export default Game;
+export default GameView;
 
 function possibleMove(squares, i) {
     return !(calculateWinner(squares) || squares[i]);
